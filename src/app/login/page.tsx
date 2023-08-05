@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -38,7 +38,13 @@ export default function Home() {
 
       <div className='max-w-7xl min-h-screen mx-auto px-6 flex h-screen w-screen justify-center'>
         <main>
-          <Card className='z-10 mt-[calc(30vh)] h-fit w-full max-w-md overflow-hidden border border-slate-600 sm:rounded-2xl sm:shadow-xl'>
+          <Link href='/'>
+            <Button variant='ghost' className="mt-[calc(25vh)] h-fit">
+              <ArrowLeftIcon className='mr-3' />
+              Home
+            </Button>
+          </Link>
+          <Card className='z-10 mt-[16px] h-fit w-full max-w-md overflow-hidden border border-slate-600 sm:rounded-2xl sm:shadow-xl'>
             <CardHeader className='flex flex-col items-center justify-center space-y-3 border-b border-slate-600 px-4 py-6 pt-8 text-center sm:px-16'>
               <CardTitle>Sign in to RoarSQL</CardTitle>
               <CardDescription>

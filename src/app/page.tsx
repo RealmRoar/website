@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/navbar";
 
@@ -28,7 +29,7 @@ export default function Home() {
         ></rect>
       </svg>
 
-      <div className="max-w-7xl min-h-screen mx-auto px-6 sm:px-8">
+      <div className='max-w-7xl min-h-screen mx-auto px-6 sm:px-8'>
         <Navbar />
         <main>
           <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
@@ -42,7 +43,9 @@ export default function Home() {
               </p>
 
               <div className='mt-16 flex items-center justify-center space-x-4 animate-hero-heading-slide-up-fade'>
-                <Button>Get early access</Button>
+                <Link href='/signup'>
+                  <Button>Get early access</Button>
+                </Link>
               </div>
             </div>
           </div>
