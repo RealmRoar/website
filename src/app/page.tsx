@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
@@ -26,23 +27,27 @@ export default function Home() {
           fill='url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)'
         ></rect>
       </svg>
-      <main>
-        <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
-          <div className='mx-auto max-w-4xl mt-12'>
-            <h2 className='text-4xl font-extrabold tracking-tight sm:text-7xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-300 to-slate-200'>
-              You personal SQL assistant.
-            </h2>
-            <p className='mt-8 text-lg leading-8 text-slate-300 mx-auto text-center max-w-2xl'>
-              RoarSQL gives developers the ability to write queries
-              faster and more efficiently by using natural language processing.
-            </p>
 
-            <div className='mt-16 flex items-center justify-center space-x-4 animate-hero-heading-slide-up-fade'>
-              <Button>Get early access</Button>
+      <div className="max-w-7xl min-h-screen mx-auto px-6 sm:px-8">
+        <Navbar />
+        <main>
+          <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
+            <div className='mx-auto max-w-4xl mt-12'>
+              <h2 className='text-4xl font-extrabold tracking-tight sm:text-7xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-300 to-slate-100'>
+                You personal SQL assistant.
+              </h2>
+              <p className='mt-8 text-lg leading-8 text-slate-300 mx-auto text-center max-w-2xl'>
+                RoarSQL gives developers the ability to write queries faster and
+                more efficiently by using natural language processing.
+              </p>
+
+              <div className='mt-16 flex items-center justify-center space-x-4 animate-hero-heading-slide-up-fade'>
+                <Button>Get early access</Button>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
