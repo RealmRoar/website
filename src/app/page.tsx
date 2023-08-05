@@ -32,7 +32,7 @@ export default function Home() {
             <h2 className='text-4xl font-extrabold tracking-tight sm:text-7xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-300 to-slate-200'>
               You personal SQL assistant.
             </h2>
-            <p className='hidden sm:block mt-8 text-lg leading-8 text-slate-300 mx-auto text-center max-w-2xl'>
+            <p className='mt-8 text-lg leading-8 text-slate-300 mx-auto text-center max-w-2xl'>
               RoarSQL gives developers the ability to write queries
               faster and more efficiently by using natural language processing.
             </p>
