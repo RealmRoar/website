@@ -35,7 +35,7 @@ export default function Home() {
           <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
             <div className='mx-auto max-w-4xl mt-12'>
               <h2 className='text-4xl font-extrabold tracking-tight sm:text-7xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-300 to-slate-100'>
-                You personal SQL assistant.
+                Your personal SQL assistant.
               </h2>
               <p className='mt-8 text-lg leading-8 text-slate-300 mx-auto text-center max-w-2xl'>
                 RoarSQL gives developers the ability to write queries faster and
