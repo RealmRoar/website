@@ -1,13 +1,7 @@
 import Link from "next/link";
-import { GitHubLogoIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import AuthCard from "@/components/authCard";
 
 export default function Home() {
   return (
@@ -39,35 +33,13 @@ export default function Home() {
       <div className='max-w-7xl min-h-screen mx-auto px-6 flex h-screen w-screen justify-center'>
         <main>
           <Link href='/'>
-            <Button variant='ghost' className="mt-[calc(25vh)] h-fit">
+            <Button variant='ghost' className='mt-[calc(25vh)] h-fit'>
               <ArrowLeftIcon className='mr-3' />
               Home
             </Button>
           </Link>
-          <Card className='z-10 mt-[16px] h-fit w-full max-w-md overflow-hidden border border-slate-600 sm:rounded-2xl sm:shadow-xl'>
-            <CardHeader className='flex flex-col items-center justify-center space-y-3 border-b border-slate-600 px-4 py-6 pt-8 text-center sm:px-16'>
-              <CardTitle>Sign in to RoarSQL</CardTitle>
-              <CardDescription>
-                Your personal SQL assistant for queries
-              </CardDescription>
-            </CardHeader>
-            <CardContent className='flex flex-col space-y-8 px-4 py-8 sm:px-16'>
-              <Button>
-                <GitHubLogoIcon className='mr-2' />
-                Continue with Github
-              </Button>
-              <p className='text-center text-sm text-slate-200'>
-                Dont have an account?{" "}
-                <Link
-                  className='font-semibold text-slate-200 transition-colors hover:text-slate-400'
-                  href='/signup'
-                >
-                  Sign up
-                </Link>
-                .
-              </p>
-            </CardContent>
-          </Card>
+
+          <AuthCard type='login' />
         </main>
       </div>
     </div>
