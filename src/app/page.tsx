@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
@@ -30,7 +29,43 @@ export default function Home() {
       </svg>
 
       <div className='max-w-7xl min-h-screen mx-auto px-6 sm:px-8'>
-        <Navbar />
+        <nav className='flex justify-between items-center h-24'>
+          <div className='flex justify-start'>
+            <div className='hidden lg:block'>
+              <Link aria-label='RoarSQ Home Link' href='/'>
+                <div className='-mt-1'>
+                  <span className='text-2xl font-extrabold tracking-tight sm:text-3xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-600 to-slate-100'>
+                    RoarSQL
+                  </span>
+                </div>
+              </Link>
+            </div>
+            <div className='lg:hidden'>
+              <Link aria-label='RoarSQL Home Link' href='/'>
+                <div className='-mt-1'>
+                  <span className='text-2xl font-extrabold tracking-tight sm:text-3xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-600 to-slate-100'>
+                    RoarSQL
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className='flex items-center space-x-8'>
+            <div
+              id='menu-items'
+              className='relative lg:flex justify-center text-base font-medium space-x-4'
+            >
+              <Link href='/login'>
+                <Button variant='outline'>Login</Button>
+              </Link>
+              <Link href='/signup'>
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
+          </div>
+        </nav>
+
         <main>
           <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
             <div className='mx-auto max-w-4xl mt-12'>

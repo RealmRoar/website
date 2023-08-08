@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import AuthCard from "@/components/authCard";
+import { AuthCard } from "@/components/auth-card";
 
 export default function Home() {
   return (

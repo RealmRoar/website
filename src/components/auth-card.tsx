@@ -16,7 +16,7 @@ interface IAuthCardProps {
   type: "login" | "signup";
 }
 
-const AuthCard = ({ type }: IAuthCardProps) => {
+export function AuthCard({ type }: IAuthCardProps) {
   const handleGithubAuth = async () => {
     try {
       const user = await supabase.auth.signInWithOAuth({
@@ -68,6 +68,4 @@ const AuthCard = ({ type }: IAuthCardProps) => {
       </CardContent>
     </Card>
   );
-};
-
-export default AuthCard;
+}
