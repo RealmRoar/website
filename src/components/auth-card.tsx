@@ -1,7 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,18 +10,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import supabase from "@/services/supabase";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "@/lib/database.types";
 
 interface IAuthCardProps {
   type: "login" | "signup";
 }
 
 export function AuthCard({ type }: IAuthCardProps) {
+  const { toast } = useToast();
+  const supabase = createClientComponentClient<Database>();
+
   const handleGithubAuth = async () => {
     try {
-      const user = await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
+        options: { redirectTo: `${location.origin}/auth/callback` },
       });
+
+      if (error) {
+        toast({
+          duration: 5000,
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+        });
+      }
     } catch (error) {
       console.log(error);
     }

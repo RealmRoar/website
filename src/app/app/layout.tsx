@@ -5,7 +5,7 @@ import { SidebarNav } from "@/components/sidebar-nav";
 import { UserNav } from "@/components/user-nav";
 
 export const metadata: Metadata = {
-  title: "RoarSQL - App",
+  title: "RoarSQL",
   description:
     "Elevate Query Writing: RoarSQL's Natural Language AI Assistant for Developers",
 };

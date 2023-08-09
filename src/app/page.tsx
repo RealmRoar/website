@@ -1,7 +1,18 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session) redirect("/app");
+
   return (
     <div className='relative isolate overflow-hidden'>
       <svg
@@ -29,7 +40,7 @@ export default function Home() {
       </svg>
 
       <div className='max-w-7xl min-h-screen mx-auto px-6 sm:px-8'>
-        <nav className='flex justify-between items-center h-24'>
+        <nav className='animate-fade-down animate-duration-2000 animate-ease-in-out flex justify-between items-center h-24'>
           <div className='flex justify-start'>
             <div className='hidden lg:block'>
               <Link aria-label='RoarSQ Home Link' href='/'>
@@ -68,7 +79,7 @@ export default function Home() {
 
         <main>
           <div className='pt-20 sm:pt-24 mx-auto max-w-6xl px-6'>
-            <div className='mx-auto max-w-4xl mt-12'>
+            <div className='animate-fade-up animate-duration-2000 animate-ease-in-out mx-auto max-w-4xl mt-12'>
               <h2 className='text-4xl font-extrabold tracking-tight sm:text-7xl text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-300 to-slate-100'>
                 Your personal SQL assistant.
               </h2>

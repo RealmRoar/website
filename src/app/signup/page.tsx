@@ -1,9 +1,20 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { AuthCard } from "@/components/auth-card";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export default function Home() {
+export default async function Signup() {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session) redirect("/app");
+
   return (
     <div className='relative isolate overflow-hidden'>
       <svg
