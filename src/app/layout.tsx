@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     "Elevate Query Writing: RoarSQL's Natural Language AI Assistant for Developers",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: {
