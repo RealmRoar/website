@@ -44,7 +44,7 @@ export default async function Signup() {
       <div className='max-w-7xl min-h-screen mx-auto px-6 flex h-screen w-screen justify-center'>
         <main>
           <Link href='/'>
-            <Button variant='ghost' className='mt-[calc(25vh)] h-fit'>
+            <Button variant='ghost' className='mt-[calc(20vh)] h-fit'>
               <ArrowLeftIcon className='mr-3' />
               Home
             </Button>

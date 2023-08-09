@@ -64,7 +64,11 @@ export function UserNav() {
               src={user?.user_metadata.avatar_url}
               alt={user?.user_metadata.user_name}
             />
-            <AvatarFallback>{user?.user_metadata.avatar_url[0]}</AvatarFallback>
+            <AvatarFallback>
+              {user?.user_metadata?.avatar_url
+                ? user?.user_metadata?.avatar_url[0]
+                : user?.user_metadata?.name[0]}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -72,10 +76,10 @@ export function UserNav() {
         <DropdownMenuLabel className='font-normal'>
           <div className='flex flex-col space-y-1'>
             <p className='text-sm font-medium leading-none'>
-              {user?.user_metadata.user_name}
+              {user?.user_metadata.user_name || user?.user_metadata.name}
             </p>
             <p className='text-xs leading-none text-muted-foreground'>
-              {user?.user_metadata.email}
+              {user?.user_metadata.email || user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
