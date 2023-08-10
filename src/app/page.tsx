@@ -4,14 +4,14 @@ import { redirect } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
 
-export default async function Home() {
+export default async function Home({ authRedirect = true }) {
   const supabase = createServerComponentClient({ cookies });
 
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (session) redirect("/app");
+  if (authRedirect && session) redirect("/app");
 
   return (
     <div className='relative isolate overflow-hidden'>

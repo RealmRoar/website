@@ -1,7 +1,9 @@
 import { Metadata } from "next";
-
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Separator } from "@/components/ui/separator";
-import { SidebarNav } from "@/components/sidebar-nav";
+import { TopbarNav } from "@/components/topbar-nav";
 import { UserNav } from "@/components/user-nav";
 
 export const metadata: Metadata = {
@@ -14,20 +16,12 @@ export const dynamic = "force-dynamic";
 
 const sidebarNavItems = [
   {
-    title: "Query",
+    title: "Queries",
     href: "/app",
-  },
-  {
-    title: "History",
-    href: "/app/history",
   },
   {
     title: "Schemas",
     href: "/app/schemas",
-  },
-  {
-    title: "Settings",
-    href: "/app/settings",
   },
 ];
 
@@ -35,7 +29,17 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
+  const supabase = createServerComponentClient({ cookies });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) redirect("/");
+
   return (
     <>
       <div className='space-y-6 p-10 pb-16 md:block'>
@@ -46,14 +50,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
           <UserNav />
         </div>
+        <TopbarNav items={sidebarNavItems} />
         <Separator className='my-6' />
-        <div className='flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <aside className='-mx-4 lg:w-1/5'>
-            <SidebarNav items={sidebarNavItems} />
-          </aside>
-
-          <div className='flex-1 lg:max-w-2xl'>{children}</div>
-        </div>
+        <div className='flex w-full'>{children}</div>
       </div>
     </>
   );

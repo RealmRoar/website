@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import {
+  ExternalLinkIcon,
+  PersonIcon,
+  HomeIcon,
+  ExitIcon,
+} from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,10 +40,6 @@ export function UserNav() {
   const handleGetUser = async () => {
     const { data } = await supabase.auth.getUser();
     setUser(data.user);
-  };
-
-  const redirectToHome = () => {
-    location.href = "/home";
   };
 
   const handleSignOut = async () => {
@@ -86,18 +88,26 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            <Link href='/app/profile' className='flex items-center w-full'>
+              <PersonIcon className='w-4 h-4 mr-2' />
+              Profile
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={redirectToHome}>
-          RoarSQL Homepage
-          <DropdownMenuShortcut>
-            <ExternalLinkIcon />
-          </DropdownMenuShortcut>
+        <DropdownMenuItem>
+          <Link href='/home' className='flex items-center w-full'>
+            <HomeIcon className='w-4 h-4 mr-2' />
+            Homepage
+            <DropdownMenuShortcut>
+              <ExternalLinkIcon />
+            </DropdownMenuShortcut>
+          </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleSignOut}>Log out</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer" onClick={handleSignOut}>
+          <ExitIcon className='w-4 h-4 mr-2' />
+          Log out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
