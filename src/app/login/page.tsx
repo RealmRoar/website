@@ -42,7 +42,7 @@ export default async function Login() {
       </svg>
 
       <div className='max-w-7xl min-h-screen mx-auto px-6 flex h-screen w-screen justify-center'>
-        <main>
+        <main className="animate-fade-down animate-duration-2000 animate-ease-in-out">
           <Link href='/'>
             <Button variant='ghost' className='mt-[calc(20vh)] h-fit'>
               <ArrowLeftIcon className='mr-3' />
