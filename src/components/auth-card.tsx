@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { useToast } from "@/components/ui/use-toast";
@@ -27,8 +28,11 @@ export function AuthCard({ type }: IAuthCardProps) {
   const { toast } = useToast();
   const supabase = createClientComponentClient<Database>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleAuth = async (provider: authProviders) => {
     try {
+      setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: provider,
         options: { redirectTo: `${location.origin}/auth/callback` },
@@ -42,7 +46,9 @@ export function AuthCard({ type }: IAuthCardProps) {
           description: "There was a problem with your request.",
         });
       }
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
@@ -70,11 +76,16 @@ export function AuthCard({ type }: IAuthCardProps) {
       </CardHeader>
 
       <CardContent className='flex flex-col space-y-8 px-4 py-8 sm:px-16'>
-        <Button className="bg-neutral-800 hover:bg-neutral-900 text-white" onClick={() => handleAuth(authProviders.github)}>
-          <GitHubLogoIcon className='mr-2' color="white" />
+        <Button
+          disabled={isLoading}
+          className='bg-neutral-800 hover:bg-neutral-900 text-white'
+          onClick={() => handleAuth(authProviders.github)}
+        >
+          <GitHubLogoIcon className='mr-2' color='white' />
           Continue with Github
         </Button>
         <Button
+          disabled={isLoading}
           className='bg-purple-600 hover:bg-purple-700 text-white'
           onClick={() => handleAuth(authProviders.gitlab)}
         >
@@ -94,6 +105,7 @@ export function AuthCard({ type }: IAuthCardProps) {
           Continue with GitLab
         </Button>
         <Button
+          disabled={isLoading}
           className='bg-blue-600 hover:bg-blue-700 text-white'
           onClick={() => handleAuth(authProviders.bitbucket)}
         >

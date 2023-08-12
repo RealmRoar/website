@@ -5,6 +5,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Separator } from "@/components/ui/separator";
 import { TopbarNav } from "@/components/topbar-nav";
 import { UserNav } from "@/components/user-nav";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "RoarSQL",
@@ -16,12 +17,8 @@ export const dynamic = "force-dynamic";
 
 const sidebarNavItems = [
   {
-    title: "Queries",
-    href: "/app",
-  },
-  {
     title: "Schemas",
-    href: "/app/schemas",
+    href: "/app",
   },
 ];
 
@@ -44,13 +41,14 @@ export default async function DashboardLayout({
     <>
       <div className='space-y-6 p-10 pb-16 md:block'>
         <div className='flex items-center justify-between space-y-0.5'>
-          <h2 className='text-lg w-fit font-extrabold tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-600 to-slate-100'>
-            RoarSQL
-          </h2>
+          <Link href='/app'>
+            <h2 className='text-lg w-fit font-extrabold tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-br from-slate-600 to-slate-100 hover:from-slate-700 hover:to-slate-200'>
+              RoarSQL
+            </h2>
+          </Link>
 
           <UserNav />
         </div>
-        <TopbarNav items={sidebarNavItems} />
         <Separator className='my-6' />
         <div className='flex w-full'>{children}</div>
       </div>
