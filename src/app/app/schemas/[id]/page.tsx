@@ -12,12 +12,13 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
+import Chat from "@/components/chat";
 
 export default function SchemaPage({ params }: { params: { id: string } }) {
   return (
     <div className='w-full space-y-6'>
       <div className='flex justify-between'>
-        <div className="mr-8">
+        <div className='mr-8'>
           <h3 className='text-2xl font-medium mb-2 flex items-center'>
             <Link href='/app'>
               <Button variant='link' className='px-0 py-0 mr-2'>
@@ -54,6 +55,8 @@ export default function SchemaPage({ params }: { params: { id: string } }) {
           </AlertDialogContent>
         </AlertDialog>
       </div>
+
+      <Chat />
     </div>
   );
 }

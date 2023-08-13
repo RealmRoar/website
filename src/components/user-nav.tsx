@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  PersonIcon,
-  HomeIcon,
-  ExitIcon,
-  RocketIcon,
-} from "@radix-ui/react-icons";
+import { PersonIcon, HomeIcon, ExitIcon } from "@radix-ui/react-icons";
 import {
   User,
   createClientComponentClient,
