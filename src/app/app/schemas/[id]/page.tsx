@@ -17,7 +17,7 @@ export default function SchemaPage({ params }: { params: { id: string } }) {
   return (
     <div className='w-full space-y-6'>
       <div className='flex justify-between'>
-        <div>
+        <div className="mr-8">
           <h3 className='text-2xl font-medium mb-2 flex items-center'>
             <Link href='/app'>
               <Button variant='link' className='px-0 py-0 mr-2'>
@@ -35,8 +35,8 @@ export default function SchemaPage({ params }: { params: { id: string } }) {
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant='outline' className='hover:bg-red-700'>
-              <TrashIcon className='h-4 w-4 mr-2' />
-              Delete schema
+              <TrashIcon className='h-4 w-4' />
+              <span className='ml-2 hidden lg:inline'>Delete schema</span>
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>

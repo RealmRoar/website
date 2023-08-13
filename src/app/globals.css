@@ -45,3 +45,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+::selection {
+  color: rgba(255, 239, 224, 0.978);
+  background: rgba(244, 147, 42, 0.3);
+}

@@ -1,11 +1,11 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Toaster } from "@/components/ui/toaster";
 import { Separator } from "@/components/ui/separator";
-import { TopbarNav } from "@/components/topbar-nav";
 import { UserNav } from "@/components/user-nav";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "RoarSQL",
@@ -14,13 +14,6 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
-
-const sidebarNavItems = [
-  {
-    title: "Schemas",
-    href: "/app",
-  },
-];
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -51,6 +44,7 @@ export default async function DashboardLayout({
         </div>
         <Separator className='my-6' />
         <div className='flex w-full'>{children}</div>
+        <Toaster />
       </div>
     </>
   );

@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { PersonIcon, HomeIcon, ExitIcon } from "@radix-ui/react-icons";
+import {
+  PersonIcon,
+  HomeIcon,
+  ExitIcon,
+  RocketIcon,
+} from "@radix-ui/react-icons";
 import {
   User,
   createClientComponentClient,
@@ -62,9 +67,11 @@ export function UserNav() {
               alt={user?.user_metadata.user_name}
             />
             <AvatarFallback>
-              {user?.user_metadata?.avatar_url
-                ? user?.user_metadata?.avatar_url[0]
-                : user?.user_metadata?.name[0]}
+              {user?.user_metadata?.name ? (
+                user?.user_metadata?.name[0]
+              ) : (
+                <PersonIcon />
+              )}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -98,6 +105,7 @@ export function UserNav() {
           <HomeIcon className='w-4 h-4 mr-2' />
           Homepage
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem className='cursor-pointer' onClick={handleSignOut}>
           <ExitIcon className='w-4 h-4 mr-2' />
           Log out

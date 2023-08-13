@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 
 export default async function ProfilePage() {
   const supabase = createServerComponentClient({ cookies });
