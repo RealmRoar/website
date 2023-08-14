@@ -22,15 +22,10 @@ export default function Message({
   message,
   isNew = false,
 }: MessageProps) {
-  const { codesArr, withoutCodeArr } = parseCode(message);
-  let result = withoutCodeArr.map((item, index) => {
-    return codesArr[index] ? [item, codesArr[index]] : [item];
-  });
-
   return (
     <div
       className={`${!isUser ? "py-7" : "py-1"} h-fit ${
-        !isUser ? "dark:bg-neutral-900 bg-[rgba(33,33,33,0.5)]" : "bg-inherit"
+        !isUser ? "dark:bg-neutral-900 bg-[rgba(20,20,20,0.5)]" : "bg-inherit"
       }`}
     >
       <div className='flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start'>
@@ -56,37 +51,13 @@ export default function Message({
           </Avatar>
         )}
         <span className='leading-8 w-[97%]'>
-          {isUser || !isNew ? (
+          {isUser ? (
             <>
-              {result.flat().map((item: any, index: number) => {
-                return (
-                  <div key={id + index}>
-                    {typeof item == "string" ? (
-                      item
-                    ) : (
-                      <div className='mb-1 w-[94%] z-50'>
-                        <Code language={item.language}>{item.code}</Code>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              <TypeOnce>{message}</TypeOnce>
             </>
           ) : (
             <>
-              {result.flat().map((item: any) => {
-                return (
-                  <>
-                    {typeof item == "string" ? (
-                      <TypeOnce>{item}</TypeOnce>
-                    ) : (
-                      <div className='mb-1 w-[94%] z-50'>
-                        <Code language={item.language}>{item.code}</Code>
-                      </div>
-                    )}
-                  </>
-                );
-              })}
+              <TypeOnce>{message.data}</TypeOnce>
             </>
           )}
         </span>
@@ -97,7 +68,7 @@ export default function Message({
 
 export function Skeleton() {
   return (
-    <div className={`py-7 h-fit dark:bg-neutral-900 bg-[rgba(33,33,33,0.5)]`}>
+    <div className={`py-7 h-fit dark:bg-neutral-900 bg-[rgba(20,20,20,0.5)]`}>
       <div className='flex flex-row gap-6 w-[50%] max-[900px]:w-[88%]  mx-auto items-start'>
         <Avatar className='h-8 w-8'>
           <AvatarImage src='/roar-icon.png' alt='RoarSQL Assistant' />
@@ -119,7 +90,7 @@ export function Skeleton() {
   );
 }
 
-function TypeOnce({ children }: { children: string }) {
+export function TypeOnce({ children }: { children: string }) {
   const [on, setOn] = useState(true);
   return on ? (
     <Typewriter

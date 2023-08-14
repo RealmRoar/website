@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { ArrowLeftIcon, TrashIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import Chat from "@/components/chat";
+import ChatWrapper from "@/components/chat-wrapper";
 import DeleteSchemaDialog from "./components/delete-schema-dialog";
 
 export default async function SchemaPage({
@@ -37,12 +37,16 @@ export default async function SchemaPage({
             Engage in natural language conversations with our SQL assistant in
             the integrated chat.
           </p>
+          <p className='text-sm text-muted-foreground'>
+            We recommend you to create a new chat for each new context you want
+            to discuss.
+          </p>
         </div>
 
         <DeleteSchemaDialog schemaId={schema.id} />
       </div>
 
-      <Chat schemaId={schema.id} />
+      <ChatWrapper schemaId={schema.id} />
     </div>
   );
 }
