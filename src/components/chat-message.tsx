@@ -57,6 +57,7 @@ export default function Message({
             </>
           ) : (
             <>
+              {/* @ts-ignore */}
               <TypeOnce>{message.data}</TypeOnce>
             </>
           )}
