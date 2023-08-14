@@ -19,7 +19,7 @@ type Message = {
   isNew?: boolean;
 };
 
-export default function Chat() {
+export default function Chat({ schemaId }: { schemaId: string }) {
   const { toast } = useToast();
   const supabase = createClientComponentClient<Database>();
 

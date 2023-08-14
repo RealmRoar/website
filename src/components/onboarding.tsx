@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { ClipboardCopyIcon, MagicWandIcon } from "@radix-ui/react-icons";
@@ -19,6 +20,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { SQL_SCHEMAS_COMMAND } from "@/constants/generateSchemaCommand";
+import { Database } from "@/lib/database.types";
+import { Spinner } from "./spinner";
 
 const databaseFormSchema = z.object({
   name: z
@@ -43,8 +46,10 @@ type DatabaseFormValues = z.infer<typeof databaseFormSchema>;
 export function Onboarding() {
   const { toast } = useToast();
   const router = useRouter();
+  const supabase = createClientComponentClient<Database>();
 
   const [hasCompletedFirstStep, setHasCompletedFirstStep] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<DatabaseFormValues>({
     resolver: zodResolver(databaseFormSchema),
@@ -67,6 +72,7 @@ export function Onboarding() {
 
   const handleSubmit = async (values: DatabaseFormValues) => {
     try {
+      setIsLoading(true);
       const { name, schema } = values;
 
       if (!name || !schema) {
@@ -77,23 +83,29 @@ export function Onboarding() {
         return;
       }
 
-      // TODO: Call supabase function to create schema
-      // const body = {
-      //   name,
-      //   schema,
-      // };
+      const body = {
+        schema: {
+          name,
+          database_name: "Postgres",
+        },
+        tables: JSON.parse(schema),
+      };
 
-      // const { data, error } = await supabase.from("schemas").insert(body);
+      const { data, error } = await supabase.functions.invoke("AddSchema", {
+        body,
+      });
 
-      // if (error) throw error;
+      if (error) throw error;
 
-      // toast({
-      //   title: "🎉 Schema created!",
-      //   description: "Your schema has been created.",
-      // });
+      toast({
+        title: "🎉 Schema created!",
+        description: "Your schema has been created.",
+      });
 
-      // router.push(`/app/schemas/${data.id}`);
+      router.push(`/app/schemas/${data}`);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
       toast({
         variant: "destructive",
@@ -223,9 +235,18 @@ export function Onboarding() {
                         </div>
                       </CardContent>
                       <CardFooter className='border-t p-4'>
-                        <Button type='submit' disabled={!hasCompletedFirstStep}>
-                          <MagicWandIcon className='w-4 h-4 mr-2' />
-                          Submit
+                        <Button
+                          type='submit'
+                          disabled={!hasCompletedFirstStep || isLoading}
+                        >
+                          {!isLoading ? (
+                            <>
+                              <MagicWandIcon className='w-4 h-4 mr-2' />
+                              Submit
+                            </>
+                          ) : (
+                            <Spinner />
+                          )}
                         </Button>
                       </CardFooter>
                     </form>
