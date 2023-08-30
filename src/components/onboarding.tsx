@@ -141,13 +141,16 @@ export function Onboarding() {
             <div className='rounded-[10px] bg-root'>
               <div className='rounded-[10px] p-6'>
                 <div className='flex items-center gap-2'>
-                  <h3 className='mb-1 text-xl tracking-[-0.16px] text-slate-12 font-bold'>
+                  <h3 className='mb-2 text-xl tracking-[-0.16px] text-slate-12 font-bold'>
                     Generate your database schema
                   </h3>
                 </div>
+                <p className='mb-1 text-sm text-muted-foreground font-normal'>
+                  Copy and run the following command in your SQL Editor to
+                  generate your database schema.
+                </p>
                 <p className='mb-6 text-sm text-muted-foreground font-normal'>
-                  Copy and run the following command to generate your database
-                  schema.
+                  You will need to paste it in the next step.
                 </p>
 
                 <Card>
@@ -184,13 +187,17 @@ export function Onboarding() {
             <div className='rounded-[10px] bg-root'>
               <div className='rounded-[10px] bg-gradient-to-r via-green-1 to-green-1 p-6'>
                 <div className='flex items-center gap-2'>
-                  <h3 className='mb-1 text-xl tracking-[-0.16px] text-slate-12 font-bold'>
+                  <h3 className='mb-2 text-xl tracking-[-0.16px] text-slate-12 font-bold'>
                     Give a name and paste your schema
                   </h3>
                 </div>
-                <p className='mb-6 text-sm text-muted-foreground font-normal'>
+                <p className='mb-1 text-sm text-muted-foreground font-normal'>
                   Once you have generated your database schema, paste it here
                   and give it a name.
+                </p>
+                <p className='mb-6 text-sm text-muted-foreground font-normal'>
+                  You will be able to ask your personal assistant questions
+                  about your database.
                 </p>
 
                 <Card>

@@ -52,9 +52,7 @@ export default function Message({
         )}
         <span className='leading-8 w-[97%]'>
           {isUser ? (
-            <>
-              <TypeOnce>{message}</TypeOnce>
-            </>
+            message
           ) : (
             <>
               {/* @ts-ignore */}

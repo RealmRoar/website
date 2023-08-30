@@ -1,10 +1,5 @@
-import { LayersIcon, Pencil2Icon } from "@radix-ui/react-icons";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { LayersIcon, CaretRightIcon } from "@radix-ui/react-icons";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
 interface ISchemaCardProps {
@@ -15,10 +10,11 @@ interface ISchemaCardProps {
 export function SchemaCard({ id, name }: ISchemaCardProps) {
   return (
     <Link href={`/app/schemas/${id}`}>
-      <Card className='hover:bg-gray-900 transition-colors duration-200'>
-        <CardHeader className='grid grid-cols-[1fr_110px] items-start gap-4 space-y-0'>
-          <div className='space-y-1'>
+      <Card className='group hover:bg-gray-900 transition-colors duration-200'>
+        <CardHeader className='w-full'>
+          <div className='space-y-1 flex items-center justify-between w-full'>
             <CardTitle>{name}</CardTitle>
+            <CaretRightIcon className='h-5 w-5 text-muted-foreground !my-0 group-hover:text-white duration-200 group-hover:translate-x-1 group-hover:scale-110 transition-transform' />
           </div>
         </CardHeader>
         <CardContent>
